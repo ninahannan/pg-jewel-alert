@@ -281,7 +281,7 @@ def render_poster(p: dict, now: datetime, daily: bool, path: Path) -> Path:
     _right(d, R - 18, 163, tag, ft, GOLD)
 
     # ---- Jadual harga (1 jadual) ----
-    tx0, ty0, tx1, ty1 = L, 222, R, 592
+    tx0, ty0, tx1, ty1 = L, 218, R, 570
     d.rounded_rectangle([tx0, ty0, tx1, ty1], 22, fill=PANEL, outline=GOLD, width=3)
     c1 = tx0 + 190
     cw = (tx1 - c1) / 3
@@ -319,11 +319,18 @@ def render_poster(p: dict, now: datetime, daily: bool, path: Path) -> Path:
             d.text((x, ry + rh / 2 - 18), rm, font=fr, fill=CREAM)
             d.text((x + d.textlength(rm, font=fr), ry + rh / 2 - 40), num, font=f, fill=WHITE)
 
+    # ---- Nota Non-PG Buyback ----
+    fn1, fn2 = F(20, "bold"), F(20, "reg")
+    t1, t2 = "* Non-PG Buyback ", "= harga beli balik emas brand selain Public Gold"
+    nx = W / 2 - (d.textlength(t1, font=fn1) + d.textlength(t2, font=fn2)) / 2
+    d.text((nx, 584), t1, font=fn1, fill=GOLD)
+    d.text((nx + d.textlength(t1, font=fn1), 584), t2, font=fn2, fill=CREAM)
+
     # ---- Kad promosi ----
     mid = W / 2
-    _promo_card(d, (L, 618, mid - 10, 856), MINT, "KOLEKSI PG JEWEL", "Barang Kemas Elegan, Harga Telus",
+    _promo_card(d, (L, 626, mid - 10, 862), MINT, "KOLEKSI PG JEWEL", "Barang Kemas Elegan, Harga Telus",
                 ["Cincin, rantai, gelang, loket & subang emas 916 & 999."])
-    _promo_card(d, (mid + 10, 618, R, 856), PINK, "TUKAR EMAS LAMA KEPADA TUNAI", "Patah, Kemek atau Putus",
+    _promo_card(d, (mid + 10, 626, R, 862), PINK, "TUKAR EMAS LAMA KEPADA TUNAI", "Patah, Kemek atau Putus",
                 ["Semua diterima & dinilai dengan telus. Hubungi Nina Hannan:", WHATSAPP])
 
     # ---- Kaki ----
