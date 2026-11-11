@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "normal / force / daily"
+        description: "normal / force / daily / force-jewelry (hantar ke @ninahannanjewelry sahaja)"
         default: normal
 
 permissions:
@@ -43,6 +43,7 @@ jobs:
           ARGS=""
           [ "$MODE" = "force" ] && ARGS="--force"
           [ "$MODE" = "daily" ] && ARGS="--daily"
+          if [ "$MODE" = "force-jewelry" ]; then ARGS="--force"; unset TELEGRAM_CHAT_ID; fi
           python bot.py $ARGS
 
       - name: Simpan state harga
