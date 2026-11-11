@@ -344,15 +344,34 @@ def render_poster(p: dict, now: datetime, daily: bool, path: Path) -> Path:
 # --------------------------------------------------------------------------- #
 # 5. Telegram
 # --------------------------------------------------------------------------- #
-def send_telegram(photo: Path, caption: str) -> None:
+def chat_ids() -> list[str]:
+    """Semua channel sasaran: TELEGRAM_CHAT_ID + TELEGRAM_CHAT_ID_2 (boleh juga dipisah koma)."""
+    ids = []
+    for var in ("TELEGRAM_CHAT_ID", "TELEGRAM_CHAT_ID_2"):
+        for c in os.environ.get(var, "").split(","):
+            c = c.strip()
+            if c and c not in ids:
+                ids.append(c)
+    if not ids:
+        raise RuntimeError("Tiada channel Telegram ditetapkan")
+    return ids
+
+
+def send_telegram(photo: Path, caption: str) -> list[str]:
+    """Hantar ke setiap channel. Pulangkan senarai channel yang gagal."""
     token = os.environ["TELEGRAM_BOT_TOKEN"]
-    chat = os.environ["TELEGRAM_CHAT_ID"]
-    with photo.open("rb") as fh:
-        r = requests.post(f"https://api.telegram.org/bot{token}/sendPhoto",
-                          data={"chat_id": chat, "caption": caption, "parse_mode": "HTML"},
-                          files={"photo": fh}, timeout=60)
-    if not r.ok:
-        raise RuntimeError(f"Telegram gagal: {r.status_code} {r.text}")
+    failed = []
+    for chat in chat_ids():
+        with photo.open("rb") as fh:
+            r = requests.post(f"https://api.telegram.org/bot{token}/sendPhoto",
+                              data={"chat_id": chat, "caption": caption, "parse_mode": "HTML"},
+                              files={"photo": fh}, timeout=60)
+        if r.ok:
+            print(f"  Dihantar ke {chat} ✔")
+        else:
+            print(f"  GAGAL ke {chat}: {r.status_code} {r.text}")
+            failed.append(chat)
+    return failed
 
 
 # --------------------------------------------------------------------------- #
@@ -394,8 +413,9 @@ def main() -> int:
         print("---- KAPSYEN ----\n" + caption)
         return 0
 
-    send_telegram(poster, caption)
-    print("  Dihantar ke Telegram ✔")
+    failed = send_telegram(poster, caption)
+    if len(failed) == len(chat_ids()):
+        raise RuntimeError("Gagal hantar ke semua channel")
 
     state["last_sent_prices"] = prices
     state["last_sent_at"] = now.isoformat(timespec="minutes")
@@ -403,6 +423,9 @@ def main() -> int:
         state["last_daily_date"] = today
         state["last_daily_prices"] = prices
     save_state(state)
+    if failed:
+        print(f"  Amaran: gagal hantar ke {', '.join(failed)} (pastikan bot admin channel)")
+        return 1
     return 0
 
 

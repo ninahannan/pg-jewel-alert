@@ -2,7 +2,7 @@
 
 Ambil harga **PG Jewel** (999/916, PG Jual & PG Beli) dan **Non-PG Gold Buyback**
 (999/916) dari https://publicgold.com.my, jana poster, dan hantar ke channel
-Telegram https://t.me/nurhasninahannan.
+Telegram https://t.me/nurhasninahannan dan https://t.me/ninahannanjewelry.
 
 ## Jadual
 | Bila | Tindakan |
@@ -13,7 +13,8 @@ Telegram https://t.me/nurhasninahannan.
 Harga terakhir disimpan di `data/state.json` (di-commit automatik oleh workflow).
 
 ## Setup (sekali sahaja)
-1. Guna bot Telegram yang sama seperti `gap-alert` (bot mesti admin channel, izin *Post Messages*).
+1. Guna bot Telegram yang sama seperti `gap-alert`. Bot mesti **admin di kedua-dua channel** (izin *Post Messages*).
+   Channel kedua (`@ninahannanjewelry`) ditetapkan terus dalam workflow (`TELEGRAM_CHAT_ID_2`).
    Token: @BotFather → `/mybots` → pilih bot → **API Token**. Jangan tekan *Revoke*.
 2. **Settings → Secrets and variables → Actions → New repository secret**:
    - `BOT_TOKEN` = token bot
