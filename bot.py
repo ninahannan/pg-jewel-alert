@@ -35,6 +35,7 @@ URL = "https://publicgold.com.my/"
 MYT = timezone(timedelta(hours=8))
 DAILY_AFTER = (0, 16)  # 12:16 pagi waktu Malaysia
 CHANNEL_LINK = "t.me/nurhasninahannan"
+WHATSAPP_LINK = "https://wa.me/601133162410"
 
 BASE = Path(__file__).resolve().parent
 STATE_FILE = BASE / "data" / "state.json"
@@ -168,7 +169,6 @@ def build_caption(p: dict, prev: dict | None, now: datetime, daily: bool) -> str
         f"\n"
         f"<i>* PG Jual = harga anda beli daripada PG\n"
         f"* PG Beli = harga PG beli semula daripada anda</i>\n"
-        f"Sumber: publicgold.com.my\n"
         f"\n"
         f"💍 <b>Koleksi PG Jewel</b> — cincin, rantai, gelang, loket &amp; subang emas 916/999 "
         f"dengan rekaan elegan dan harga telus mengikut pasaran semasa.\n"
@@ -177,7 +177,8 @@ def build_caption(p: dict, prev: dict | None, now: datetime, daily: bool) -> str
         f"dan dinilai dengan telus.\n"
         f"\n"
         f"📍 Lebih <b>30 cawangan</b> di seluruh Malaysia.\n"
-        f"📞 Hubungi <b>Nina Hannan</b> (Public Gold Dealer): <b>011-3316 2410</b>"
+        f"📞 Hubungi <b>Nina Hannan</b> (Public Gold Dealer): <b>011-3316 2410</b>\n"
+        f'💬 <a href="{WHATSAPP_LINK}">WhatsApp terus — klik di sini</a>'
     )
 
 
