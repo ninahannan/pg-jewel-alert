@@ -168,7 +168,8 @@ def build_caption(p: dict, prev: dict | None, now: datetime, daily: bool) -> str
         f"  • 916 : <b>RM {p['buyback_916']:,}</b>{g('buyback_916')}\n"
         f"\n"
         f"<i>* PG Jual = harga anda beli daripada PG\n"
-        f"* PG Beli = harga PG beli semula daripada anda</i>\n"
+        f"* PG Beli = harga PG beli semula daripada anda\n"
+        f"* Non-PG Buyback = harga beli balik emas brand selain Public Gold</i>\n"
         f"\n"
         f"💍 <b>Koleksi PG Jewel</b> — cincin, rantai, gelang, loket &amp; subang emas 916/999 "
         f"dengan rekaan elegan dan harga telus mengikut pasaran semasa.\n"
@@ -290,7 +291,7 @@ def render_poster(p: dict, now: datetime, daily: bool, path: Path) -> Path:
     d.rectangle([tx0 + 3, ty0 + head_h - 22, tx1 - 3, ty0 + head_h], fill=(78, 10, 20))
     d.line([(tx0 + 3, ty0 + head_h), (tx1 - 3, ty0 + head_h)], fill=GOLD, width=2)
     heads = [("KETULENAN", ""), ("PG SELL", "Harga Jual"), ("PG BUY", "Harga Beli"),
-             ("NON-PG BUYBACK", "Beli Emas Luar")]
+             ("NON-PG BUYBACK", "Emas Brand Lain")]
     for (a, b), (h1, h2) in zip(cols, heads):
         if h2:
             _center(d, (a + b) / 2, ty0 + 20, h1, F(25 if len(h1) < 10 else 21, "bold"), GOLD)
