@@ -1,20 +1,20 @@
 {
   "last_sent_prices": {
-    "jewel_999_sell": 499,
-    "jewel_999_buy": 454,
-    "jewel_916_sell": 475,
-    "jewel_916_buy": 413,
-    "buyback_999": 444,
-    "buyback_916": 409
+    "jewel_999_sell": 511,
+    "jewel_999_buy": 465,
+    "jewel_916_sell": 486,
+    "jewel_916_buy": 422,
+    "buyback_999": 455,
+    "buyback_916": 418
   },
-  "last_sent_at": "2026-11-25T22:39+08:00",
-  "last_daily_date": "2026-11-25",
+  "last_sent_at": "2026-11-26T06:34+08:00",
+  "last_daily_date": "2026-11-26",
   "last_daily_prices": {
-    "jewel_999_sell": 514,
-    "jewel_999_buy": 467,
-    "jewel_916_sell": 489,
-    "jewel_916_buy": 425,
-    "buyback_999": 457,
-    "buyback_916": 421
+    "jewel_999_sell": 511,
+    "jewel_999_buy": 465,
+    "jewel_916_sell": 486,
+    "jewel_916_buy": 422,
+    "buyback_999": 455,
+    "buyback_916": 418
   }
 }
